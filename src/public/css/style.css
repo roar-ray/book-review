@@ -16,7 +16,6 @@ body {
     align-items: center;
     justify-content: space-between;
     padding: 0 30px;
-    position: fixed;
     top: 0;
     box-sizing: border-box;
   }
@@ -39,3 +38,71 @@ body {
   #header .nav__item a:hover {
     text-decoration: underline;
   }
+
+.contents{
+    width: 80%;
+    margin:0px auto;
+}
+
+.notice{
+    padding: 0.5em 1em;
+    margin: 2em 0;
+    color: #5d627b;
+    background: white;
+    border-top: solid 5px #5d627b;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.22);
+}
+.notice p {
+    margin: 0; 
+    padding: 0;
+}
+
+.search {
+  margin-bottom: 20px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  gap: 15px;
+}
+
+.panel {
+  display: flex;
+}
+
+.summary {
+  margin:10px;
+}
+
+.buttonRegist a {
+  background: #eee;
+  border-radius: 50px;
+  position: relative;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 0 auto;
+  max-width: 260px;
+  padding: 10px 25px;
+  color: #313131;
+  transition: 0.3s ease-in-out;
+  font-weight: 500;
+}
+.buttonRegist a:hover {
+  background: #313131;
+  color: #FFF;
+}
+.buttonRegist a:after {
+  content: '';
+  width: 5px;
+  height: 5px;
+  border-top: 3px solid #313131;
+  border-right: 3px solid #313131;
+  transform: rotate(45deg) translateY(-50%);
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  border-radius: 1px;
+  transition: 0.3s ease-in-out;
+}

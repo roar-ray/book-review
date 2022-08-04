@@ -15,4 +15,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('home', 'HomeController@index');
+Route::get('book','BookController@index')->name('book.index');
+Route::get('book/create','BookController@create')->name('book.create');
+Route::post('book/store','BookController@store')->name('book.store');
