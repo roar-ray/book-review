@@ -22,7 +22,7 @@
         <button id="getBookInfo" class="">書籍情報取得</button>
     </div>
 
-    <form action="{{ Route('book.create') }}" method="post">
+    <form action="{{ Route('create') }}" method="post">
         @csrf
         <div class="summary">
             <div class="thumbnail"></div>

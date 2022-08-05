@@ -11,10 +11,13 @@
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Auth::routes();
 
-Route::get('/','BookController@index')->name('book.index');
-Route::post('book/create','BookController@create')->name('book.create');
-Route::post('book/store','BookController@store')->name('book.store');
+Route::get('/','BookController@index')->name('index');
+
+Route::group(['middleware'=>'auth'] ,function () {
+    Route::post('create','BookController@create')->name('create');
+    Route::post('store','BookController@store')->name('store');    
+});
+
+Route::get('/logout', 'Auth\LoginController@logout');

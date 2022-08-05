@@ -4,7 +4,7 @@
 
 @section('contents')
     <h1>本を登録</h1>
-    <form action="{{ route('book.store') }}" method="POST">
+    <form action="{{ route('store') }}" method="POST">
         @csrf
         <div class="summary">
             <div class="thumbnail"></div>
@@ -19,7 +19,7 @@
         <div class="regist">
             <span>感想を入力してください。</span>
             <textarea name="comment" id="comment" cols="30" rows="10"></textarea>
-            <a class="buttonRegist" href="{{ Route('book.store') }}">保存</a>
+            <a class="buttonRegist" href="{{ Route('store') }}">保存</a>
         </div>
     </form>
 @endsection
