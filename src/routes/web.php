@@ -11,10 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
-Route::get('book','BookController@index')->name('book.index');
-Route::get('book/create','BookController@create')->name('book.create');
+Route::get('/','BookController@index')->name('book.index');
+Route::post('book/create','BookController@create')->name('book.create');
 Route::post('book/store','BookController@store')->name('book.store');
