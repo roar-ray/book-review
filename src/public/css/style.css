@@ -149,3 +149,7 @@ a {
 #btnSearch {
     margin-top: 10px;
 }
+
+.thumbnail {
+    width: 150px;
+}

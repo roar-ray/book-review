@@ -21,34 +21,37 @@
             <h2>本を探す</h2>
             <label>
                 <span>タイトル</span>
-                <input id="title" name="title" type="text" placeholder="キーワードを入力">
+                <input id="title" name="title" type="text" value="{{ old('title') }}" placeholder="キーワードを入力">
             </label>
             <label>
                 <span>著者名</span>
-                <input id="author" name="author" type="text" placeholder="キーワードを入力">
+                <input id="author" name="author" type="text" value="{{ old('author') }}"placeholder="キーワードを入力">
             </label>
             <label>
                 <span>ISBNコード</span>
-                <input id="isbn" name="isbn" type="text" placeholder="ISBNコードを入力">
+                <input id="isbn" name="isbn" type="text" value="{{ old('isbn') }}" placeholder="ISBNコードを入力">
             </label>
             <input id="search" type="submit" class="buttonRegist" value="検索">
         </div>
         @if (isset($books))
             @foreach ($books as $book)
                 <div class="summary">
-                    @if (property_exists($book->volumeInfo, 'imageLinks'))
-                        <div>
+                    <div class="thumbnail">
+                        @if (property_exists($book->volumeInfo, 'imageLinks'))
                             <img src="{{ $book->volumeInfo->imageLinks->thumbnail }}">
-                        </div>
-                    @else
-                        <div></div>
-                    @endif
+                        @endif
+                    </div>
                     <div class="info">
                         <p>タイトル：{{ $book->volumeInfo->title }}</p>
-                        <p>出版社：</p>
-                        <p>著者：</p>
-                        <p>出版日：</p>
-                        <p>説明：</p>
+                        @if (property_exists($book->volumeInfo, 'authors'))
+                            <p>著者：{{ $book->volumeInfo->authors[0] }}</p>
+                        @endif
+                        @if (property_exists($book->volumeInfo, 'publishedDate'))
+                            <p>出版日：{{ $book->volumeInfo->publishedDate }}</p>
+                        @endif
+                        @if (property_exists($book->volumeInfo, 'description'))
+                            <p>{{ $book->volumeInfo->description }}</p>
+                        @endif
                         <input type="submit" class="buttonRegist" value="感想を書く">
                     </div>
                 </div>
