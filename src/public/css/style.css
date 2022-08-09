@@ -121,3 +121,31 @@ a {
 .info {
     margin-left: 10px;
 }
+
+.search span {
+    display:block;
+    margin-top:10px ;
+}
+
+.search label {
+    display:block;
+}
+
+.search input[type='text'] {
+	font: 15px/24px sans-serif;
+	box-sizing: border-box;
+	width: 50%;
+	padding: 0.3em;
+	transition: 0.3s;
+	letter-spacing: 1px;
+	color: #aaaaaa;
+	border: 1px solid #1b2538;
+	border-radius: 4px;
+}
+.search input[type='text']:focus {
+	border: 1px solid;
+}
+
+#btnSearch {
+    margin-top: 10px;
+}

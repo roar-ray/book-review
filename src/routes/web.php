@@ -14,6 +14,7 @@
 Auth::routes();
 
 Route::get('/','BookController@index')->name('index');
+Route::post('search','BookController@search')->name('search');
 
 Route::group(['middleware'=>'auth'] ,function () {
     Route::post('create','BookController@create')->name('create');
