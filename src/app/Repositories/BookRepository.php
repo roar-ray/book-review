@@ -9,19 +9,19 @@ class BookRepository implements BookRepositoryInterface
 
     private $url;
 
-    function __construct()
-    {
-        $this->url = self::ENDPOINT_URL;
-    }
-
     public function getData(string $title, string $author, string $isbn): array
     {
         $books = array();
 
         // 検索条件の設定
-        $this->url .= empty($title) ? "" : "intitle:" . $title . "+";
-        $this->url .= empty($author) ? "" : "inauthor:" . $author . "+";
-        $this->url .= empty($isbn) ? "" : "isbn:" . $isbn;
+        $searchCondition = [
+            empty($title) ? "" : "intitle:" . $title,
+            empty($author) ? "" : "inauthor:" . $author,
+            empty($isbn) ? "" : "isbn:" . $isbn,
+        ];
+
+        // URLの設定
+        $this->url = self::ENDPOINT_URL . implode('+', array_filter($searchCondition));
 
         // 書籍情報を取得
         $json = file_get_contents($this->url);
@@ -29,6 +29,7 @@ class BookRepository implements BookRepositoryInterface
         if ($data->totalItems > 0) {
             $books = $data->items;
         }
+
         return $books;
     }
 }

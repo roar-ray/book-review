@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\BookRequest;
 use App\Services\BookService;
 
 class BookController extends Controller
@@ -13,20 +14,12 @@ class BookController extends Controller
         return view('book.index');
     }
 
-    public function search(BookService $bookService, Request $request)
+    public function search(BookRequest $request, BookService $bookService)
     {
-        $title = $request->input('title') ?? "";
-        $author = $request->input('author') ?? "";
-        $isbn = $request->input('isbn') ?? "";
-
-        if (empty($title) && empty($author) && empty($isbn)) {
-            return redirect('/');
-        }
-
         $books = $bookService->SearchBook(
-            $title,
-            $author,
-            $isbn
+            $request->input('title'),
+            $request->input('author'),
+            $request->input('isbn'),
         );
 
         return view('book.index', compact('books'));
