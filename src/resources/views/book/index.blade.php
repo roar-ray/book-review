@@ -37,21 +37,13 @@
             @foreach ($books as $book)
                 <div class="summary">
                     <div class="thumbnail">
-                        @if (property_exists($book->volumeInfo, 'imageLinks'))
-                            <img src="{{ $book->volumeInfo->imageLinks->thumbnail }}">
-                        @endif
+                        <img src="{{ $book->getCoverImgUrl() }}">
                     </div>
                     <div class="info">
-                        <p>タイトル：{{ $book->volumeInfo->title }}</p>
-                        @if (property_exists($book->volumeInfo, 'authors'))
-                            <p>著者：{{ $book->volumeInfo->authors[0] }}</p>
-                        @endif
-                        @if (property_exists($book->volumeInfo, 'publishedDate'))
-                            <p>出版日：{{ $book->volumeInfo->publishedDate }}</p>
-                        @endif
-                        @if (property_exists($book->volumeInfo, 'description'))
-                            <p>{{ $book->volumeInfo->description }}</p>
-                        @endif
+                        <p>タイトル：{{ $book->getTitle() }}</p>
+                        <p>著者：{{ $book->getAuthors() }}</p>
+                        <p>出版日：{{ $book->getPublishedDate() }}</p>
+                        <p>{{ $book->getDescription() }}</p>
                         <input type="submit" class="buttonRegist" value="感想を書く">
                     </div>
                 </div>
