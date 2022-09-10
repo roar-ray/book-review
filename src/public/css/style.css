@@ -77,7 +77,7 @@ a {
     margin: 10px;
 }
 
-.buttonRegist {
+.btn {
     background: #eee;
     border-radius: 50px;
     position: relative;
@@ -92,11 +92,11 @@ a {
     font-weight: 500;
     font-size: large;
 }
-.buttonRegist:hover {
+.btn:hover {
     background: #313131;
     color: #fff;
 }
-.buttonRegist:after {
+.btn:after {
     content: "";
     width: 5px;
     height: 5px;
@@ -140,13 +140,10 @@ a {
 	letter-spacing: 1px;
 	border: 1px solid #1b2538;
 	border-radius: 4px;
+    margin-bottom: 5px;
 }
 .search input[type='text']:focus {
 	border: 1px solid;
-}
-
-#btnSearch {
-    margin-top: 10px;
 }
 
 .thumbnail {

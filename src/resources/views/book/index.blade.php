@@ -21,17 +21,17 @@
             <h2>本を探す</h2>
             <label>
                 <span>タイトル</span>
-                <input id="title" name="title" type="text" value="{{ old('title') }}" placeholder="キーワードを入力">
+                <input name="title" type="text" value="{{ old('title') }}" placeholder="キーワードを入力">
             </label>
             <label>
                 <span>著者名</span>
-                <input id="author" name="author" type="text" value="{{ old('author') }}"placeholder="キーワードを入力">
+                <input name="author" type="text" value="{{ old('author') }}"placeholder="キーワードを入力">
             </label>
             <label>
                 <span>ISBNコード</span>
-                <input id="isbn" name="isbn" type="text" value="{{ old('isbn') }}" placeholder="ISBNコードを入力">
+                <input name="isbn" type="text" value="{{ old('isbn') }}" placeholder="ISBNコードを入力">
             </label>
-            <input id="search" type="submit" class="buttonRegist" value="検索">
+            <input type="submit" class="btn" value="検索">
         </div>
         @if (isset($books))
             @foreach ($books as $book)
@@ -44,7 +44,7 @@
                         <p>著者：{{ $book->getAuthors() }}</p>
                         <p>出版日：{{ $book->getPublishedDate() }}</p>
                         <p>{{ $book->getDescription() }}</p>
-                        <input type="submit" class="buttonRegist" value="感想を書く">
+                        <input type="submit" class="btn" value="感想を書く">
                     </div>
                 </div>
                 <hr>
