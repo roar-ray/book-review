@@ -18,3 +18,11 @@ RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-av
 RUN cd /etc/apache2/mods-enabled \
     && ln -s ../mods-available/rewrite.load
 
+# Composerのインストール
+ARG composer_ver=2.1.11
+ARG composer_hash=fdb587131f8a11fcd475c9949ca340cc58a4b50cce6833caa8118b759a4ad1a3
+ARG composer_path=/usr/local/bin/composer
+RUN apt-get update \
+  && php -r "copy('https://getcomposer.org/download/$composer_ver/composer.phar', '$composer_path');" \
+  && chmod 755 $composer_path \
+  && apt-get install -y unzip

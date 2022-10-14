@@ -96,21 +96,30 @@
 $(function () {
   $("#getBookInfo").click(function (e) {
     e.preventDefault();
+    var url = "https://www.googleapis.com/books/v1/volumes?q=";
+    var title = $("#title").val();
+    var author = $("#author").val();
     var isbn = $("#isbn").val();
-    var url = "https://api.openbd.jp/v1/get?isbn=" + isbn;
-    $.getJSON(url, function (data) {
-      if (data[0] != null) {
-        if (data[0].summary.cover == "") {
-          $(".thumbnail").html('<img src="" />');
-        } else {
-          $(".thumbnail").html('<img src="' + data[0].summary.cover + '" style="border:solid 1px #000000" />');
-        }
 
-        $("#title").text(data[0].summary.title);
-        $("#publisher").text(data[0].summary.publisher);
-        $("#author").text(data[0].summary.author);
-        $("#pubdate").text(data[0].summary.pubdate);
-        $("#description").text(data[0].onix.CollateralDetail.TextContent[0].Text);
+    if (title != "") {
+      url = url + "intitle:" + title;
+    }
+
+    if (author != "") {
+      url = url + "inauthor:" + author;
+    }
+
+    if (isbn != "") {
+      url = url + "isbn:" + isbn;
+    }
+
+    $.getJSON(url, function (data) {
+      console.log(data);
+
+      if (data != null) {
+        $("#bookTitle").text("hogehoge"
+        /*data[0].volumeInfo.title*/
+        );
       }
     });
   });
@@ -125,7 +134,7 @@ $(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/hiro/book-review/src/resources/js/jquery.js */"./resources/js/jquery.js");
+module.exports = __webpack_require__(/*! /home/ec2-user/environment/book-review/src/resources/js/jquery.js */"./resources/js/jquery.js");
 
 
 /***/ })

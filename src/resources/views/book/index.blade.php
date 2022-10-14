@@ -15,25 +15,40 @@
         </ul>
     </div>
 
-    <h1>本を検索する</h1>
-
-    <div class="search">
-        ISBN<input id="isbn" type="text" name="isbn" value="9784798060996" autofocus>
-        <button id="getBookInfo" class="">書籍情報取得</button>
-    </div>
-
-    <form action="{{ Route('create') }}" method="post">
+    <form action="{{ Route('search') }}" method="post">
         @csrf
-        <div class="summary">
-            <div class="thumbnail"></div>
-            <div class="info">
-                <p id="title">タイトル：</p>
-                <p id="publisher">出版社：</p>
-                <p id="author">著者：</p>
-                <p id="pubdate">出版日：</p>
-                <p id="description">説明：</p>
-                <input type="submit" class="buttonRegist" value="感想を書く">
-            </div>
+        <div class="search">
+            <h2>本を探す</h2>
+            <label>
+                <span>タイトル</span>
+                <input name="title" type="text" value="{{ old('title') }}" placeholder="キーワードを入力">
+            </label>
+            <label>
+                <span>著者名</span>
+                <input name="author" type="text" value="{{ old('author') }}"placeholder="キーワードを入力">
+            </label>
+            <label>
+                <span>ISBNコード</span>
+                <input name="isbn" type="text" value="{{ old('isbn') }}" placeholder="ISBNコードを入力">
+            </label>
+            <input type="submit" class="btn" value="検索">
         </div>
+        @if (isset($books))
+            @foreach ($books as $book)
+                <div class="summary">
+                    <div class="thumbnail">
+                        <img src="{{ $book->getCoverImgUrl() }}">
+                    </div>
+                    <div class="info">
+                        <p>タイトル：{{ $book->getTitle() }}</p>
+                        <p>著者：{{ $book->getAuthors() }}</p>
+                        <p>出版日：{{ $book->getPublishedDate() }}</p>
+                        <p>{{ $book->getDescription() }}</p>
+                        <input type="submit" class="btn" value="感想を書く">
+                    </div>
+                </div>
+                <hr>
+            @endforeach
+        @endif
     </form>
 @endsection
