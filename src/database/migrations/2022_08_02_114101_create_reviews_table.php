@@ -21,7 +21,7 @@ class CreateReviewsTable extends Migration
             $table->date('read_end_date');
             $table->integer('current_page')->unsigned();
             $table->integer('rate')->unsigned();
-            $table->string('comment');
+            $table->text('comment');
             $table->boolean('is_open');
             $table->timestamps();
         });
