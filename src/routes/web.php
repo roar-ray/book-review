@@ -15,10 +15,12 @@ Auth::routes();
 
 Route::get('/', 'BookController@index')->name('index');
 Route::post('/', 'BookController@search')->name('search');
+Route::get('books/{volume_id}/review/create', 'BookReviewController@create')->name('book.review.create');
+Route::post('books/{volume_id}/review/store', 'BookReviewController@store')->name('book.review.store');
 
-Route::group(['middleware' => 'auth'], function () {
-    Route::post('create', 'BookController@create')->name('create');
-    Route::post('store', 'BookController@store')->name('store');
-});
+// Route::group(['middleware' => 'auth'], function () {
+//     Route::post('create', 'BookController@create')->name('create');
+//     Route::post('store', 'BookController@store')->name('store');
+// });
 
 Route::get('/logout', 'Auth\LoginController@logout');

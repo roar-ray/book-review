@@ -23,6 +23,9 @@ class BookService
         for ($i = 0; $i < count($data); $i++) {
             $book = new Book();
 
+            // VolumeIDをbookインスタンスのプロパティにセットする。
+            $book->setVolumeId($data[$i]->id);
+
             $book->setTitle($data[$i]->volumeInfo->title);
             if (property_exists($data[$i]->volumeInfo, 'imageLinks')) {
                 $book->setCoverImgUrl($data[$i]->volumeInfo->imageLinks->thumbnail);
@@ -41,5 +44,32 @@ class BookService
         }
 
         return $books;
+    }
+
+    public function GetBook(string $volumeId)
+    {
+        $data = $this->bookRepository->getBook($volumeId);
+
+        $book = new Book();
+
+        // VolumeIDをbookインスタンスのプロパティにセットする。
+        $book->setVolumeId($data->id);
+
+        $book->setTitle($data->volumeInfo->title);
+        if (property_exists($data->volumeInfo, 'imageLinks')) {
+            $book->setCoverImgUrl($data->volumeInfo->imageLinks->thumbnail);
+        }
+        if (property_exists($data->volumeInfo, 'authors')) {
+            $book->setAuthors($data->volumeInfo->authors);
+        }
+        if (property_exists($data->volumeInfo, 'publishedDate')) {
+            $book->setPublishedDate($data->volumeInfo->publishedDate);
+        }
+        if (property_exists($data->volumeInfo, 'description')) {
+            $book->setDescription($data->volumeInfo->description);
+        }
+
+        return $book;
+
     }
 }

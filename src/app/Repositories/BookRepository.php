@@ -5,7 +5,7 @@ namespace App\Repositories;
 class BookRepository implements BookRepositoryInterface
 {
     // APIエンドポイント
-    const ENDPOINT_URL = 'https://www.googleapis.com/books/v1/volumes?q=';
+    const ENDPOINT_URL = 'https://www.googleapis.com/books/v1/volumes';
 
     private $url;
 
@@ -21,7 +21,7 @@ class BookRepository implements BookRepositoryInterface
         ];
 
         // URLの設定
-        $this->url = self::ENDPOINT_URL . implode('+', array_filter($searchCondition));
+        $this->url = self::ENDPOINT_URL. "?q=" . implode('+', array_filter($searchCondition));
 
         // 書籍情報を取得
         $json = file_get_contents($this->url);
@@ -31,5 +31,20 @@ class BookRepository implements BookRepositoryInterface
         }
 
         return $books;
+    }
+
+    public function getBook(string $volumeId)
+    {
+        $book = array();
+
+        // URLの設定
+        $this->url = self::ENDPOINT_URL."/".$volumeId;
+
+        // 書籍情報を取得
+        $json = file_get_contents($this->url);
+        $book = json_decode($json);
+        
+        return $book;
+
     }
 }

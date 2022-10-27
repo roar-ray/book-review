@@ -18,7 +18,7 @@
             <nav>
                 <ul class="nav__list">
                     <li class="nav__item"><a href="#">HOME</a></li>
-                    <li class="nav__item"><a href="{{ Route('create') }}">BOOK</a></li>
+                    {{-- <li class="nav__item"><a href="{{ Route('create') }}">BOOK</a></li> --}}
                     @if (Auth::check())
                         {{-- <li class="nav__item">{{ Auth::user()->name }}さん</li> --}}
                         <li class="nav__item"><a href="/logout">LOGOUT</a></li>

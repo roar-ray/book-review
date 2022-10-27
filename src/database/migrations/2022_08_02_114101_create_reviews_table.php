@@ -16,13 +16,8 @@ class CreateReviewsTable extends Migration
         Schema::create('reviews', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('user_id');
-            $table->string('isbn',13);
-            $table->date('read_start_date');
-            $table->date('read_end_date');
-            $table->integer('current_page')->unsigned();
-            $table->integer('rate')->unsigned();
+            $table->string('volume_id');
             $table->text('comment');
-            $table->boolean('is_open');
             $table->timestamps();
         });
     }
