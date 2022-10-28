@@ -31,7 +31,7 @@
                 <span>ISBNコード</span>
                 <input name="isbn" type="text" value="{{ old('isbn') }}" placeholder="ISBNコードを入力">
             </label>
-            <input type="submit" class="btn" value="検索">
+            <input type="submit" name="search" class="btn" value="検索">
         </div>
         @if (isset($books))
             @foreach ($books as $book)
@@ -44,7 +44,7 @@
                         <p>著者：{{ $book->getAuthors() }}</p>
                         <p>出版日：{{ $book->getPublishedDate() }}</p>
                         <p>{{ $book->getDescription() }}</p>
-                        <input type="submit" class="btn" value="感想を書く">
+                        <a href="{{route('book.review.create',['volume_id'=>$book->getVolumeId()])}}">感想を書く</a>
                     </div>
                 </div>
                 <hr>
