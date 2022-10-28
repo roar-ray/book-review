@@ -8,7 +8,7 @@ use App\Services\BookService;
 use App\Models\Review;
 use Illuminate\Support\Facades\Auth;
 
-class BookReviewController extends Controller
+class ReviewController extends Controller
 {
     public function create(Request $request,BookService $bookService,$volume_id)
     {

@@ -15,8 +15,10 @@ Auth::routes();
 
 Route::get('/', 'BookController@index')->name('index');
 Route::post('/', 'BookController@search')->name('search');
-Route::get('books/{volume_id}/review/create', 'BookReviewController@create')->name('book.review.create');
-Route::post('books/{volume_id}/review/store', 'BookReviewController@store')->name('book.review.store');
+
+Route::get('/books/reviews','ReviewController@index')->name('book.review.index');
+Route::get('books/{volume_id}/review/create', 'ReviewController@create')->name('book.review.create');
+Route::post('books/{volume_id}/review/store', 'ReviewController@store')->name('book.review.store');
 
 // Route::group(['middleware' => 'auth'], function () {
 //     Route::post('create', 'BookController@create')->name('create');
